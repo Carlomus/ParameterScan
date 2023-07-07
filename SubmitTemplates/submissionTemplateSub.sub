@@ -1,0 +1,27 @@
+## In this file you define several parameters. Keep note that if you want
+## to run job number n you must add a n at the Values and this produces a n+1.root file 
+
+executable            = /afs/cern.ch/user/c/camussol/private/Optics/SingleFile/%(runCommandName)s.sh
+universe              = vanilla
+Values                = $(Process)+ 0
+arguments             = $INT(Values)
+output                = Outputs/Logs/%(OutName)s.out
+error                 = Outputs/Logs/%(OutName)s.out
+log                   = Outputs/Logs/%(LogName)s.log
+
+transfer_input_files  = ""
+transfer_output_files = ""
+
++MaxRuntime = %(MaxRunTime)i
+
+request_cpus = 1
+request_memory = 1024
+request_disk = 400000 
+requirements = (OpSysAndVer =?= "CentOS7")
+
+on_exit_hold = (ExitBySignal == True) || (ExitCode != 0)
+periodic_release = (JobStatus == 5) && (NumJobStarts < 5) && ( (CurrentTime - EnteredCurrentStatus) > (15*60) )
+
+## Total number of submitted jobs 
+
+queue 1
