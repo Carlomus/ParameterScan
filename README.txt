@@ -1,6 +1,6 @@
 ########How the various files work########
 
-On mechanics of code will only talk about doublet but triplet is identical 
+Code will only talk about doublet but triplet is identical 
 
 GenerateGeneralScanFiles.py takes as input ====> 
 
